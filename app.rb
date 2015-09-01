@@ -6,3 +6,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 get('/') do
   erb(:index)
 end
+
+get('/users/new') do
+  erb(:new_user_form)
+end
