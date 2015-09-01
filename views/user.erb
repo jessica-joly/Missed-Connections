@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h3>Hello <%= @user.name() %></h3>
+  <h2>Hello <%= @user.name() %></h2>
 
   <% if @keywords.any?() %>
     <ul>
@@ -12,7 +12,7 @@
       You don't have any keywords, add some below!
     </p>
   <% end %>
-  <form class="" action="index.html" method="post">
+  <form class="" action="/keywords/new" method="post">
     <div class="form-group">
       <label for="new_keyword">New Keyword to Track</label>
       <input class="form-control" type="text" name="new_keyword" placeholder="i.e. brunette">
