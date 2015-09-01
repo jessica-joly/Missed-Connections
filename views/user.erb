@@ -1,0 +1,35 @@
+<div class="jumbotron">
+  <h3>Hello <%= @user.name() %></h3>
+
+  <% if @keywords.any?() %>
+    <ul>
+      <% @keywords.each() do |keyword| %>
+        <li><%= keyword.keyword() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>
+      You don't have any keywords, add some below!
+    </p>
+  <% end %>
+  <form class="" action="index.html" method="post">
+    <div class="form-group">
+      <label for="new_keyword">New Keyword to Track</label>
+      <input class="form-control" type="text" name="new_keyword" placeholder="i.e. brunette">
+    </div>
+    <button class="form-control" name="button">Add</button>
+  </form>
+
+  <h3>Matching Posts</h3>
+  <% if @posts.any?() %>
+    <ul>
+      <% @posts.each() do |post| %>
+        <li><%= post.url() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>
+      You don't have any matching posts, add some different keywords!
+    </p>
+  <% end %>
+</div>
