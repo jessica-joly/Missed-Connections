@@ -82,3 +82,21 @@ delete('/users/:user_id/keywords/:keyword_id/delete') do
   keyword.destroy()
   redirect back
 end
+
+get('/users/:id/settings') do
+  erb(:settings)
+end
+
+delete('/users/:id/delete') do
+  user_id = params.fetch('id').to_i()
+  user = User.find(user_id)
+  Keywords_Users.all.each() do |connection|
+    if connection.user_id() == user_id
+      keyword = Keyword.find(connection.keyword_id())
+      keyword.destroy()
+      connection.destroy()
+    end
+  end
+  user.destroy()
+  erb(:index)
+end

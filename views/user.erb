@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1>Hello <%= @user.name() %></h1> 
+  <h1>Hello <%= @user.name() %></h1>
   <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
 <hr>
   <% if @keywords.any?() %>
@@ -47,6 +47,19 @@
     </ul>
   <% end %>
 
+<hr>
+<center>
+<button class="btn btn-default" name="button">Edit Name</button>
 
 
+<form class="" action="/users/<%= @user.id() %>/delete" method="post">
+  <div class="form-group">
+  <input type="hidden" name="_method" value="delete">
+  <button class="btn btn-danger" name="button">Delete <%= @user.name() %></button></div>
+</form>
+
+
+
+
+</center>
 </div>
