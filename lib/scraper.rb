@@ -4,10 +4,8 @@ class Keyword
     require 'mechanize'
     require 'pry-byebug'
     require 'nokogiri'
-    # require 'csv'
 
     keyword = self.keyword()
-
     scraper = Mechanize.new
 
     scraper.history_added = Proc.new { sleep 0.5 }
@@ -32,20 +30,13 @@ class Keyword
 
         #save the results
         results << url
-
-
       end
     end
 
     results.each do |url|
       # untested
       Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => url})
-  end
+    end
 
-    # CSV.open("filename_#{keyword}.csv", "w+") do |csv_file|
-    #     results.each do |row|
-    #         csv_file << row
-    #     end
-    # end
   end
 end
