@@ -7,6 +7,11 @@ get('/') do
   erb(:index)
 end
 
+get('/login') do
+  @users = User.all()
+  erb(:login)
+end
+
 get('/users/new') do
   erb(:new_user_form)
 end
@@ -33,7 +38,7 @@ end
 post('/users/:id/keywords/new') do
   keyword = params.fetch('new_keyword')
   new_keyword = Keyword.create({:keyword => keyword})
-  u_id = params.fetch('id').to_i()
-  Keywords_Users.create({:user_id => u_id, :keyword_id => new_keyword.id})
+  user_id = params.fetch('id').to_i()
+  Keywords_Users.create({:user_id => user_id, :keyword_id => new_keyword.id})
   redirect back
 end

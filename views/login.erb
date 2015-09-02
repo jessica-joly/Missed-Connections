@@ -1,0 +1,12 @@
+<div class="jumbotron">
+  <h1>Returning Users</h1>
+  <p>Select your name from the list below</p>
+  <% if @users.any?() %>
+
+  <% else %>
+    <p>
+      Sorry, we have no one in our system! Click the button below to sign up!
+    </p>
+    <a href="/users/new" class="btn btn-danger btn-lg"> Get started!</a>
+  <% end %>
+</div>
