@@ -1,14 +1,15 @@
 <div class="jumbotron">
-  <h2>Hello <%= @user.name() %></h2>
-  <h5>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</h5>
+  <h1>Hello <%= @user.name() %></h1>
+  <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
+  <br>
 
   <% if @keywords.any?() %>
-  <p>Current keywords:</p>
-    <ul>
+  <h3>Current keywords</h3>
+    <!-- <ul> -->
       <% @keywords.each() do |keyword| %>
-        <li><%= keyword.keyword() %></li>
+        <p><%= keyword.keyword() %></p>
       <% end %>
-    </ul>
+    <!-- </ul> -->
   <% else %>
     <p>
       You don't have any keywords, add some below!
@@ -23,7 +24,8 @@
     </div>
     <button class="form-control" name="button">Add</button>
   </form>
-
+  <br>
+<hr>
   <h3>Matching Posts</h3>
   <% if @posts.any?() %>
     <ul>

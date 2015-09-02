@@ -29,6 +29,12 @@ get('/users/:id') do
   erb(:user)
 end
 
+post('/users/select') do
+  user_id = params.fetch('user_id').to_i()
+  # binding.pry
+  redirect("/users/#{user_id}")
+end
+
 post('/users/new') do
   name = params.fetch('name')
   new_user = User.create({:name => name})
