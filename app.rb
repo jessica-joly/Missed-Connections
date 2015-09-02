@@ -29,6 +29,12 @@ get('/users/:id') do
   erb(:user)
 end
 
+post('/users/select') do
+  user_id = params.fetch('user_id').to_i()
+  # binding.pry
+  redirect("/users/#{user_id}")
+end
+
 post('/users/new') do
   name = params.fetch('name')
   new_user = User.create({:name => name})
@@ -52,12 +58,21 @@ post('/users/:id/keywords/find') do
       @keywords.push(Keyword.find(connection.keyword_id()))
     end
   end
-
   @keywords.each() do |keyword|
     keyword.scraper(@user.id)
   end
-
   @posts = @user.posts()
-
   redirect back
+end
+
+delete('/users/:user_id/keywords/:keyword_id/delete') do
+  user_id = params.fetch('user_id').to_i()
+  keyword_id = params.fetch('keyword_id').to_i()
+  keyword = Keyword.find(keyword_id)
+  keyword.destroy()
+  Keywords_Users.all.each() do |connection|
+    if connection.user_id() == user_id && connection.keyword_id() == keyword_id
+      connection.destroy()
+    end
+  end
 end
