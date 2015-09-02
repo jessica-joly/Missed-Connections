@@ -69,10 +69,16 @@ delete('/users/:user_id/keywords/:keyword_id/delete') do
   user_id = params.fetch('user_id').to_i()
   keyword_id = params.fetch('keyword_id').to_i()
   keyword = Keyword.find(keyword_id)
-  keyword.destroy()
   Keywords_Users.all.each() do |connection|
     if connection.user_id() == user_id && connection.keyword_id() == keyword_id
       connection.destroy()
     end
   end
+  Post.all.each() do |post|
+    if post.user_id() == user_id && post.keyword_id() == keyword_id
+      post.destroy()
+    end
+  end
+  keyword.destroy()
+  redirect back
 end
