@@ -14,7 +14,12 @@ end
 get('/users/:id') do
   user_id = params.fetch('id').to_i()
   @user = User.find(user_id)
-  @keywords = @user.keywords()
+  @keywords = []
+  Keywords_Users.
+  Keyword.each() do |keyword|
+    if keyword.
+  end
+  # @keywords = @user.keywords()
   binding.pry
   @posts = @user.posts()
   erb(:user)
@@ -31,6 +36,7 @@ post('/users/:id/keywords/new') do
   new_keyword = Keyword.create({:keyword => keyword})
   user_id = params.fetch('id').to_i()
   user = User.find(user_id)
-  user.keywords.push(new_keyword)
+
+  # user.keywords.push(new_keyword)
   redirect back
 end
