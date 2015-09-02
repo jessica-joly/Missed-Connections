@@ -5,6 +5,10 @@ gem("sinatra-activerecord")
 gem("rake")
 gem("pg")
 gem("sinatra")
+gem("mechanize")
+gem("pry-byebug")
+gem("nokogiri")
+
 
 group(:test) do
   gem("rspec")

@@ -10,14 +10,20 @@ set(:show_exceptions, false)
 
 require('./app')
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
-#
-# RSpec.configure do |config|
-#   config.after(:each) do
-#     Band.all().each() do |x|
-#       x.destroy()
-#     end
-#     Venue.all().each() do |x|
-#       x.destroy()
-#     end
-#   end
-# end
+
+RSpec.configure do |config|
+  config.after(:each) do
+    User.all().each() do |x|
+      x.destroy()
+    end
+    Keyword.all().each() do |x|
+      x.destroy()
+    end
+    Post.all().each() do |x|
+      x.destroy()
+    end
+    Keywords_Users.all().each() do |x|
+      x.destroy()
+    end
+  end
+end

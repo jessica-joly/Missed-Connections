@@ -4,9 +4,9 @@ class Keyword
     require 'mechanize'
     require 'pry-byebug'
     require 'nokogiri'
-    require 'csv'
+    # require 'csv'
 
-    keyword = self
+    keyword = self.keyword()
 
     scraper = Mechanize.new
 
@@ -14,7 +14,7 @@ class Keyword
     BASE_URL = 'http://portland.craigslist.org'
     ADDRESS = 'https://portland.craigslist.org/search/mis'
     results = []
-    results << ['URL']
+    # results << ['URL']
 
     scraper.get(ADDRESS) do |search_page|
       # work with the form
@@ -25,23 +25,22 @@ class Keyword
 
       # get the results
       raw_results = result_page.search('p.row')
-
       #parse the results
       raw_results.each do |result|
         link = result.css('a')[1]
-
-        name = link.text.strip
         url = "http://portland.craigslist.org" + link.attributes["href"].value
 
         #save the results
-        results << [url]
+        results << url
+
+
       end
     end
 
     results.each do |url|
       # untested
-      Post.create({:keyword_id => keyword.id(), :user_id => user_id, :url => url})
-    end
+      Post.create({:keyword_id => self.id(), :user_id => user_id, :url => url})
+  end
 
     # CSV.open("filename_#{keyword}.csv", "w+") do |csv_file|
     #     results.each do |row|
