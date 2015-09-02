@@ -2,16 +2,14 @@
   <h1>Returning Users</h1>
   <p>Select your name from the list below</p>
   <% if @users.any?() %>
-
-  <form class="" action="/users/select" method="post">
-    <select name="user_id" class="selectpicker">
-      <% @users.each() do |user| %>
-        <option value="<%= user.id() %>"><%= user.name() %></option>
-      <% end %>
-    </select>
-    <button class="btn btn-danger btn-sm">Enter</button>
-  </form>
-
+    <form class="" action="/users/select" method="post">
+      <select name="user_id" class="selectpicker">
+        <% @users.each() do |user| %>
+          <option value="<%= user.id() %>"><%= user.name() %></option>
+        <% end %>
+      </select>
+      <button class="btn btn-danger btn-sm">Enter</button>
+    </form>
   <% else %>
     <p>
       Sorry, we have no one in our system! Click the button below to sign up!

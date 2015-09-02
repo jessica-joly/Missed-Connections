@@ -100,3 +100,11 @@ delete('/users/:id/delete') do
   user.destroy()
   erb(:index)
 end
+
+patch('/users/:id/update') do
+  user_id = params.fetch('id').to_i()
+  name = params.fetch('name')
+  user = User.find(user_id)
+  user.update({:name => name})
+  redirect back
+end
