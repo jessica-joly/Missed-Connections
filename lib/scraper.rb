@@ -14,7 +14,6 @@ class Keyword
     BASE_URL = 'http://portland.craigslist.org'
     ADDRESS = 'https://portland.craigslist.org/search/mis'
     results = []
-    # results << ['URL']
 
     scraper.get(ADDRESS) do |search_page|
       # work with the form
@@ -27,8 +26,10 @@ class Keyword
       raw_results = result_page.search('p.row')
       #parse the results
       raw_results.each do |result|
-        link = result.css('a')[1]
+        link = result.css('a')[1
+
         url = "http://portland.craigslist.org" + link.attributes["href"].value
+
 
         #save the results
         results << url
