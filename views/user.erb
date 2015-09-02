@@ -1,29 +1,36 @@
 <div class="jumbotron">
-  <h2>Hello <%= @user.name() %></h2>
-  <h5>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</h5>
-
+  <h1>Hello <%= @user.name() %></h1>
+  <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
+<hr>
   <% if @keywords.any?() %>
-  <p>Current keywords:</p>
-    <ul>
+  <h3>Current keywords</h3>
+    <!-- <ul> -->
       <% @keywords.each() do |keyword| %>
-        <li><%= keyword.keyword() %></li>
+        <form class="" action="/users/<%= @user.id() %>/keywords/<%= keyword.id() %>/delete" method="post">
+          <div class="form-group">
+          <input type="hidden" name="_method" value="delete">
+          <button class="btn btn-default btn-sm"><%= keyword.keyword() %></button>
+        </div>
+        </form>
       <% end %>
-    </ul>
+    <!-- </ul> -->
   <% else %>
     <p>
       You don't have any keywords, add some below!
     </p>
   <% end %>
-  <br>
-  <br>
-  <form class="" action="/users/<%= @user.id() %>/keywords/new" method="post">
+
+  <h3>Add new keyword</h3>
+  <form class="form-inline" action="/users/<%= @user.id() %>/keywords/new" method="post">
     <div class="form-group">
-      <label for="new_keyword">New Keyword to Track</label>
+      <label for="new_keyword"> </label>
       <input class="form-control" type="text" name="new_keyword" placeholder="i.e. brunette">
     </div>
-    <button class="form-control" name="button">Add</button>
+    <button class="btn btn-default" name="button">Add</button>
   </form>
-
+  <br>
+  <p>To delete keyword, simply click on it!</p>
+<hr>
   <h3>Matching Posts</h3>
 
   <form action="/users/<%= @user.id() %>/keywords/find" method="post">
