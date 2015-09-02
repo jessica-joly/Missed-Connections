@@ -42,3 +42,22 @@ post('/users/:id/keywords/new') do
   Keywords_Users.create({:user_id => user_id, :keyword_id => new_keyword.id})
   redirect back
 end
+
+post('/users/:id/keywords/find') do
+  user_id = params.fetch('id').to_i()
+  @user = User.find(user_id)
+  @keywords = []
+  Keywords_Users.all.each() do |connection|
+    if connection.user_id() == @user.id()
+      @keywords.push(Keyword.find(connection.keyword_id()))
+    end
+  end
+
+  @keywords.each() do |keyword|
+    keyword.scraper(@user.id)
+  end
+
+  @posts = @user.posts()
+
+  redirect back
+end

@@ -25,15 +25,21 @@
   </form>
 
   <h3>Matching Posts</h3>
+
+  <form action="/users/<%= @user.id() %>/keywords/find" method="post">
+
+  <button class="btn-sm btn-default">Find Your Connections</button>
+  </form>
+
   <% if @posts.any?() %>
     <ul>
       <% @posts.each() do |post| %>
-        <li><%= post.url() %></li>
+        <% keyword = Keyword.find(post.keyword_id()).keyword() %>
+        <li><%= keyword %>: <a href="<%= post.url() %>"><%= post.url() %></a></li>
       <% end %>
     </ul>
-  <% else %>
-    <p>
-      You don't have any matching posts, add some different keywords!
-    </p>
   <% end %>
+
+
+
 </div>
