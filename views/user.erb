@@ -1,25 +1,21 @@
 <div class="jumbotron">
-  <h1>Hello <%= @user.name() %></h1>
+  <h1>Hello, <%= @user.name() %></h1>
   <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
-<hr>
+
+  <hr>
   <% if @keywords.any?() %>
   <h3>Current keywords</h3>
-    <!-- <ul> -->
-      <% @keywords.each() do |keyword| %>
-        <form class="" action="/users/<%= @user.id() %>/keywords/<%= keyword.id() %>/delete" method="post">
-          <div class="form-group">
+    <% @keywords.each() do |keyword| %>
+      <form class="" action="/users/<%= @user.id() %>/keywords/<%= keyword.id() %>/delete" method="post">
+        <div class="form-group">
           <input type="hidden" name="_method" value="delete">
           <button class="btn btn-default btn-sm"><%= keyword.keyword() %></button>
         </div>
-        </form>
-      <% end %>
-    <!-- </ul> -->
+      </form>
+    <% end %>
   <% else %>
-    <p>
-      You don't have any keywords, add some below!
-    </p>
+    <p>You don't have any keywords, add some below!</p>
   <% end %>
-
   <h3>Add new keyword</h3>
   <form class="form-inline" action="/users/<%= @user.id() %>/keywords/new" method="post">
     <div class="form-group">
@@ -30,14 +26,12 @@
   </form>
   <br>
   <p>To delete keyword, simply click on it!</p>
-<hr>
+
+  <hr>
   <h3>Matching Posts</h3>
-
   <form action="/users/<%= @user.id() %>/keywords/find" method="post">
-
-  <button class="btn btn-default">Find Your Connections</button>
+    <button class="btn btn-default">Find Your Connections</button>
   </form>
-
   <% if @posts.any?() %>
     <ul>
       <% @posts.each() do |post| %>
@@ -47,6 +41,20 @@
     </ul>
   <% end %>
 
-
-
+  <hr>
+  <center>
+    <form class="form-inline" action="/users/<%= @user.id() %>/update" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="patch">
+        <input type="text" name="name" placeholder="i.e. Max" class="form-control">
+        <button class="btn btn-default" name="button">Edit Name</button>
+      </div>
+    </form>
+    <br>
+    <form class="" action="/users/<%= @user.id() %>/delete" method="post">
+      <div class="form-group">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-danger form-control" name="button">Delete <%= @user.name() %></button></div>
+    </form>
+  </center>
 </div>
