@@ -26,16 +26,18 @@ class Keyword
       #parse the results
       raw_results.each do |result|
         link = result.css('a')[1]
+        title = link.text.strip
         url = "http://portland.craigslist.org" + link.attributes["href"].value
 
         #save the results
-        results << url
+        results << [url, title]
       end
     end
 
-    results.each do |url|
-      # untested
-      Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => url})
+
+    results.each do |post|
+    # untested
+      Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => post[0], :title => post[1]})
     end
 
   end
