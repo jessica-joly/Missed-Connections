@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1>Hello <%= @user.name() %></h1> 
+  <h1>Hello <%= @user.name() %></h1>
   <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
 <hr>
   <% if @keywords.any?() %>
@@ -42,7 +42,7 @@
     <ul>
       <% @posts.each() do |post| %>
         <% keyword = Keyword.find(post.keyword_id()).keyword() %>
-        <li><%= keyword %>: <a href="<%= post.url() %>"><%= post.url() %></a></li>
+        <li><%= keyword %>: <a href="<%= post.url %>"><%= post.title %></a></li>
       <% end %>
     </ul>
   <% end %>
