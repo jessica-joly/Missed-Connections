@@ -1,19 +1,12 @@
 <div class="jumbotron">
   <h1>Welcome Back</h1>
-  <% if @users.any?() %>
-  <p>Select your name from the list below</p>
-    <form class="" action="/users/select" method="post">
-      <select name="user_id" class="selectpicker">
-        <% @users.each() do |user| %>
-          <option value="<%= user.id() %>"><%= user.name() %></option>
-        <% end %>
-      </select>
-      <button class="btn btn-danger btn-sm">Enter</button>
+  <form class="" action="/login" method="post">
+    <div class="form-group">
+      <label for="email">Email:</label><input class="form-control" type="text" name="email" placeholder="i.e. max@max.com">
+      <br>
+      <label for="password">Password:</label><input class="form-control" type="password" name="password" placeholder="">
+    </div>
+    <button class="form-control btn btn-danger" name="button">Login</button>
     </form>
-  <% else %>
-    <p>
-      Click the button below to sign up!
-    </p>
-    <a href="/users/new" class="btn btn-danger btn-lg"> Get started!</a>
-  <% end %>
+  </div>
 </div>
