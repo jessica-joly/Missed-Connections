@@ -9,12 +9,12 @@ class Keyword
     scraper = Mechanize.new
 
     scraper.history_added = Proc.new { sleep 0.5 }
-    BASE_URL = 'http://portland.craigslist.org'
-    ADDRESS = 'https://portland.craigslist.org/search/mis'
+    base_url = 'http://portland.craigslist.org'
+    address = 'https://portland.craigslist.org/search/mis'
     results = []
     # results << ['URL']
 
-    scraper.get(ADDRESS) do |search_page|
+    scraper.get(address) do |search_page|
       # work with the form
       form = search_page.form_with(:id => 'searchform') do |search|
         search.query = keyword
@@ -36,9 +36,9 @@ class Keyword
 
     results.each() do |result|
       scraper.history_added = Proc.new { sleep 0.5 }
-      ADDRESS = result[0]
+      address = result[0]
       begin
-        scraper.get(ADDRESS) do |page|
+        scraper.get(address) do |page|
           raw_results = page.search('section.userbody')
           #parse the results
           raw_results.each do |post|
