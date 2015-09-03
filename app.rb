@@ -8,8 +8,20 @@ get('/') do
 end
 
 get('/login') do
-  @users = User.all()
   erb(:login)
+end
+
+post('/login') do
+  email = params.fetch('email')
+  password = params.fetch('password')
+  User.all.each() do |user|
+    if user.email == email && user.password == password
+      @user = user
+  redirect("/users/#{@user.id()}")
+    else
+  erb(:errors)
+    end
+  end
 end
 
 get('/users/new') do
@@ -28,12 +40,6 @@ get('/users/:id') do
   end
   @posts = @user.posts()
   erb(:user)
-end
-
-post('/users/select') do
-  user_id = params.fetch('user_id').to_i()
-  # binding.pry
-  redirect("/users/#{user_id}")
 end
 
 post('/users/new') do

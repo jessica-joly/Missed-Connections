@@ -64,4 +64,18 @@ describe('the user path', :type => :feature) do
     click_button('Submit')
     expect(page).to have_content('Oops!')
   end
+
+  it 'allow user to login using email and password authentification' do
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Submit')
+    visit ('/login')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Login')
+    expect(page).to have_content('jessica@gmail.com')
+   end
 end
