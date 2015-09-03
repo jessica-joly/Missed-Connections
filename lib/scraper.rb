@@ -39,11 +39,9 @@ class Keyword
       ADDRESS = result[0]
       begin
         scraper.get(ADDRESS) do |page|
-          # section may be a problem
           raw_results = page.search('section.userbody')
           #parse the results
           raw_results.each do |post|
-            # section may be a problem
             body_raw = post.css('section#postingbody')[0]
             body = body_raw.text.strip
             #save the results
@@ -55,13 +53,11 @@ class Keyword
       end
     end
 
-
     results.each do |post|
     # untested
       if post.any?()
         Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => post[0], :title => post[1], :body => post[2]})
       end
     end
-
   end
 end

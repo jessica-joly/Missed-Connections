@@ -29,6 +29,12 @@ get('/users/:id') do
   erb(:user)
 end
 
+get('/users/:user_id/posts/:post_id') do
+  post_id = params.fetch('post_id').to_i()
+  @post = Post.find(post_id)
+  erb(:post)
+end
+
 post('/users/select') do
   user_id = params.fetch('user_id').to_i()
   # binding.pry

@@ -36,7 +36,7 @@
     <ul>
       <% @posts.each() do |post| %>
         <% keyword = Keyword.find(post.keyword_id()).keyword() %>
-        <li><%= keyword %>: <a href="<%= post.url %>"><%= post.title %></a></li>
+        <li><%= keyword %>: <a href="/users/<%= @user.id() %>/posts/<%= post.id() %>"><%= post.title %></a></li>
       <% end %>
     </ul>
   <% end %>
