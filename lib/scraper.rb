@@ -34,10 +34,30 @@ class Keyword
       end
     end
 
+    # all of the above again
+    results.each() do |result|
+      scraper.history_added = Proc.new { sleep 0.5 }
+      ADDRESS = result[0]
+      # Address may be a problem
+
+      scraper.get(ADDRESS) do |page|
+        # section may be a problem
+        raw_results = page.search('section.userbody')
+        #parse the results
+        raw_results.each do |result|
+          # section may be a problem
+          body_raw = result.css('section')
+          body = raw_body.text.strip
+          #save the results
+          result << content
+        end
+      end
+    end
+
 
     results.each do |post|
     # untested
-      Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => post[0], :title => post[1]})
+      Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => post[0], :title => post[1], :body => post[2]})
     end
 
   end
