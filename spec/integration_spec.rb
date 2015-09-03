@@ -5,6 +5,8 @@ describe('the user path', :type => :feature) do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'alyssa@gmail.com')
+    fill_in('password', :with => 'cheese')
     click_button('Submit')
     expect(page).to have_content('Alyssa')
   end
@@ -13,6 +15,8 @@ describe('the user path', :type => :feature) do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
     click_button('Submit')
     fill_in('new_keyword', :with => 'blonde')
     click_button('Add')
@@ -25,22 +29,42 @@ describe('the user path', :type => :feature) do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
     click_button('Submit')
     fill_in('email', :with => 'jessica@gmail.com')
     click_button('Add/Edit Email')
     expect(page).to have_content('jessica@gmail.com')
   end
 
-  it 'will delete the user email address' do
+  it 'will update the user email address' do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
-    click_button('Submit')
     fill_in('email', :with => 'jessica@gmail.com')
-    click_button('Add/Edit Email')
-    click_button('Unsubscribe')
-    expect(page).to have_content('You are able to subscribe to email notifications whenever a post matches your keyword.')
+    fill_in('password', :with => 'hooray')
+    click_button('Submit')
+    fill_in('email', :with => 'alyssa@gmail.com')
+    click_button('Update')
+    expect(page).to have_content('alyssa@gmail.com')
   end
+
+  it 'will redirect the user to an error page if submitted email is already in use by another user'do
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Submit')
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Mark')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Submit')
+    expect(page).to have_content('Oops!')
+  end
+
 
   it 'will edit a username' do
     visit('/')
@@ -51,4 +75,18 @@ describe('the user path', :type => :feature) do
     click_button('Edit Name')
     expect(page).to have_content('starwars')
   end
+
+  it 'allow user to login using email and password authentification' do
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Submit')
+    visit ('/login')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
+    click_button('Login')
+    expect(page).to have_content('jessica@gmail.com')
+   end
 end
