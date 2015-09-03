@@ -1,6 +1,8 @@
 <div class="jumbotron">
-  <h1><%= @post.title() %></h1>
-  <p>
+  <h2><%= @post.title() %></h2>
+  <p id="post">
     <%= @post.body() %>
   </p>
+
+  <a href='/users/<%= @post.user_id() %>'>Back</a>
 </div>
