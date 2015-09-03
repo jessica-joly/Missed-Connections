@@ -1,7 +1,7 @@
 <div class="jumbotron">
-  <h1>Returning Users</h1>
-  <p>Select your name from the list below</p>
+  <h1>Welcome Back</h1>
   <% if @users.any?() %>
+  <p>Select your name from the list below</p>
     <form class="" action="/users/select" method="post">
       <select name="user_id" class="selectpicker">
         <% @users.each() do |user| %>
@@ -12,7 +12,7 @@
     </form>
   <% else %>
     <p>
-      Sorry, we have no one in our system! Click the button below to sign up!
+      Click the button below to sign up!
     </p>
     <a href="/users/new" class="btn btn-danger btn-lg"> Get started!</a>
   <% end %>
