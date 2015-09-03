@@ -57,13 +57,19 @@
         <input type="hidden" name="_method" value="patch">
         <input type="text" name="email" placeholder="i.e. max@max.com" class="form-control">
         <button class="btn btn-default" name="button">Add/Edit Email</button>
+    </form>
+        <form class="" action="/users/<%= @user.id() %>/email/delete" method="post">
+          <div class="form-group">
+          <input type="hidden" name="_method" value="delete">
+          <button class="btn btn-danger form-control" name="button">Unsubscribe</button></div>
+        </form>
       </div>
       <% if @email != nil %>
-      <%= @email %>
+      <p>Current email: <%= @email %></p>
       <% else %>
       <p>You are able to subscribe to email notifications whenever a post matches your keyword.</p>
       <% end %>
-    </form>
+    
     <br>
     <form class="" action="/users/<%= @user.id() %>/delete" method="post">
       <div class="form-group">

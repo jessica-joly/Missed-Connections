@@ -117,3 +117,11 @@ patch('/users/:id/email') do
   user.update({:email => email})
   redirect back
 end
+
+delete('/users/:id/email/delete') do
+  user_id = params.fetch('id').to_i()
+  user = User.find(user_id)
+  email = user.email()
+  email = nil
+  redirect back
+end
