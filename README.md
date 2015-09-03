@@ -14,6 +14,14 @@ _We based our scraping methods on the Viking Code School's tutorial here (#thank
 
 _This application uses Ruby, Sinatra, Nokogiri gem, Bootstrap, and Mechanize gem._
 
+* git clone https://github.com/ahorrocks2/missed_connections.git
+* rake db:create
+* rake db:schema:load
+* rake db:test:prepare
+* start Sinatra with ruby app.rb
+
+*Enjoy!
+
 ### Legal
 
 
