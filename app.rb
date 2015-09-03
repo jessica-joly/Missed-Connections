@@ -38,8 +38,14 @@ end
 
 post('/users/new') do
   name = params.fetch('name')
-  new_user = User.create({:name => name})
-  redirect("/users/#{new_user.id()}")
+  email = params.fetch('email')
+  password = params.fetch('password')
+  new_user = User.new({:name => name, :email => email, :password => password})
+  if new_user.save()
+    redirect("/users/#{new_user.id()}")
+  else
+    erb(:errors)
+  end
 end
 
 post('/users/:id/keywords/new') do
