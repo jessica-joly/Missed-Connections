@@ -37,17 +37,16 @@ describe('the user path', :type => :feature) do
     expect(page).to have_content('Alyssa')
   end
 
-  it 'will delete the user email address' do
+  it 'will update the user email address' do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
     fill_in('email', :with => 'jessica@gmail.com')
     fill_in('password', :with => 'hooray')
     click_button('Submit')
-    fill_in('email', :with => 'jessica@gmail.com')
-    click_button('Add')
-    click_button('Unsubscribe')
-    expect(page).to have_content('You are able to subscribe to email notifications whenever a post matches your keyword.')
+    fill_in('email', :with => 'alyssa@gmail.com')
+    click_button('Update')
+    expect(page).to have_content('alyssa@gmail.com')
   end
 
   it 'will redirect the user to an error page if submitted email is already in use by another user'do
