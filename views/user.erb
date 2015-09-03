@@ -1,6 +1,9 @@
 <div class="jumbotron">
   <h1>Hello, <%= @user.name() %></h1>
-  <p>This is your main page. You can view your current keywords, add keywords, and see all postings matching your keywords.</p>
+  <p>Here you can add keywords and see all postings that relate to them.
+    <br>
+    To delete a keyword, simply click on it.
+  </p>
 
   <hr>
   <% if @keywords.any?() %>
@@ -14,7 +17,6 @@
       </form>
     <% end %>
   <% else %>
-    <p>You don't have any keywords, add some below!</p>
   <% end %>
   <h3>Add new keyword</h3>
   <form class="form-inline" action="/users/<%= @user.id() %>/keywords/new" method="post">
@@ -25,7 +27,6 @@
     <button class="btn btn-default" name="button">Add</button>
   </form>
   <br>
-  <p>To delete keyword, simply click on it!</p>
 
   <hr>
   <h3>Matching Posts</h3>
@@ -49,6 +50,15 @@
         <input type="text" name="name" placeholder="i.e. Max" class="form-control">
         <button class="btn btn-default" name="button">Edit Name</button>
       </div>
+    </form>
+    <br>
+    <form class="form-inline" action="/users/<%= @user.id() %>/update" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="patch">
+        <input type="text" name="name" placeholder="i.e. max@max.com" class="form-control">
+        <button class="btn btn-default" name="button">Add/Edit Email</button>
+      </div>
+      <p>You are able to subscribe to email notifications whenever a post matches your keyword.</p>
     </form>
     <br>
     <form class="" action="/users/<%= @user.id() %>/delete" method="post">

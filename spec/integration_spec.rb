@@ -22,6 +22,12 @@ describe('the user path', :type => :feature) do
   end
 
   it 'will collect the user email address'do
-
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Alyssa')
+    click_button('Submit')
+    fill_in('email', :with => 'jessica@gmail.com')
+    click_button('Add')
+    expect(page).to have_content('Alyssa')
   end
 end
