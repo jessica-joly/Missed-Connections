@@ -3,6 +3,8 @@
   <p id="post">
     <%= @post.body() %>
   </p>
-
+  <center>
+    <a role="button" class="btn btn-success" href="<%= @post.url() %>">It's Meant to Be!</a>
+  </center>
   <a href='/users/<%= @post.user_id() %>'>Back</a>
 </div>
