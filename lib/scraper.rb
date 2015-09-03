@@ -54,7 +54,6 @@ class Keyword
     end
 
     results.each do |post|
-    # untested
       if post.any?()
         Post.find_or_create_by({:keyword_id => self.id(), :user_id => user_id, :url => post[0], :title => post[1], :body => post[2]})
       end

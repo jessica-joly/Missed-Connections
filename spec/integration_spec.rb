@@ -27,8 +27,8 @@ describe('the user path', :type => :feature) do
     fill_in('name', :with => 'Alyssa')
     click_button('Submit')
     fill_in('email', :with => 'jessica@gmail.com')
-    click_button('Add')
-    expect(page).to have_content('Alyssa')
+    click_button('Add/Edit Email')
+    expect(page).to have_content('jessica@gmail.com')
   end
 
   it 'will delete the user email address' do
@@ -37,8 +37,18 @@ describe('the user path', :type => :feature) do
     fill_in('name', :with => 'Alyssa')
     click_button('Submit')
     fill_in('email', :with => 'jessica@gmail.com')
-    click_button('Add')
+    click_button('Add/Edit Email')
     click_button('Unsubscribe')
     expect(page).to have_content('You are able to subscribe to email notifications whenever a post matches your keyword.')
+  end
+
+  it 'will edit a username' do
+    visit('/')
+    click_link('Get started!')
+    fill_in('name', :with => 'Alyssa')
+    click_button('Submit')
+    fill_in('name', :with => 'starwars')
+    click_button('Edit Name')
+    expect(page).to have_content('starwars')
   end
 end
