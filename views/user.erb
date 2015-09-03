@@ -61,14 +61,11 @@
         <form class="" action="/users/<%= @user.id() %>/email/update" method="post">
           <div class="form-group">
           <input type="hidden" name="_method" value="patch">
-          <button class="btn btn-danger form-control" name="button">Unsubscribe</button></div>
         </form>
       </div>
       <% if @email != nil %>
       <p>Current email: <%= @email %></p>
-      <% else %>
-      <p>You are able to subscribe to email notifications whenever a post matches your keyword.</p>
-      <% end %>
+      
 
     <br>
     <form class="" action="/users/<%= @user.id() %>/delete" method="post">

@@ -16,4 +16,11 @@ describe User do
       expect(test_user2.save()).to(eq(false))
     end
   end
+
+  describe '#capitalize' do
+    it 'capitalizes the user name' do
+      test_user = User.create({:name => "austin", :email => "austin@gmail.com", :password => "cheese"})
+      expect(test_user.name()).to(eq('Austin'))
+    end
+  end
 end
