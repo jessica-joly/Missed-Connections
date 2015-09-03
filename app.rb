@@ -19,6 +19,7 @@ end
 get('/users/:id') do
   user_id = params.fetch('id').to_i()
   @user = User.find(user_id)
+  @email = @user.email()
   @keywords = []
   Keywords_Users.all.each() do |connection|
     if connection.user_id() == @user.id()

@@ -58,7 +58,11 @@
         <input type="text" name="email" placeholder="i.e. max@max.com" class="form-control">
         <button class="btn btn-default" name="button">Add/Edit Email</button>
       </div>
+      <% if @email != nil %>
+      <%= @email %>
+      <% else %>
       <p>You are able to subscribe to email notifications whenever a post matches your keyword.</p>
+      <% end %>
     </form>
     <br>
     <form class="" action="/users/<%= @user.id() %>/delete" method="post">
