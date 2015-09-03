@@ -8,4 +8,5 @@ describe User do
   describe '#keywords' do
     it { should have_many(:keywords).through(:posts) }
   end
+  
 end
