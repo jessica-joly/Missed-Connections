@@ -34,19 +34,17 @@ class Keyword
       end
     end
 
-    # all of the above again
     results.each() do |result|
       scraper.history_added = Proc.new { sleep 0.5 }
       ADDRESS = result[0]
-      # Address may be a problem
       begin
         scraper.get(ADDRESS) do |page|
           # section may be a problem
           raw_results = page.search('section.userbody')
           #parse the results
-          raw_results.each do |result|
+          raw_results.each do |post|
             # section may be a problem
-            body_raw = result.css('section')
+            body_raw = post.css('section#postingbody')[0]
             body = body_raw.text.strip
             #save the results
             result << body
