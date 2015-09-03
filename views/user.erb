@@ -52,10 +52,10 @@
       </div>
     </form>
     <br>
-    <form class="form-inline" action="/users/<%= @user.id() %>/update" method="post">
+    <form class="form-inline" action="/users/<%= @user.id() %>/email" method="post">
       <div class="form-group">
         <input type="hidden" name="_method" value="patch">
-        <input type="text" name="name" placeholder="i.e. max@max.com" class="form-control">
+        <input type="text" name="email" placeholder="i.e. max@max.com" class="form-control">
         <button class="btn btn-default" name="button">Add/Edit Email</button>
       </div>
       <p>You are able to subscribe to email notifications whenever a post matches your keyword.</p>

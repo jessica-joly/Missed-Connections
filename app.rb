@@ -108,3 +108,11 @@ patch('/users/:id/update') do
   user.update({:name => name})
   redirect back
 end
+
+patch('/users/:id/email') do
+  user_id = params.fetch('id').to_i()
+  user = User.find(user_id)
+  email = params.fetch('email')
+  user.update({:email => email})
+  redirect back
+end
