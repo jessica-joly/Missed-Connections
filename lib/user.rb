@@ -7,9 +7,7 @@ class User < ActiveRecord::Base
   validates(:email, {:presence => true})
   validates(:password, {:presence => true})
   before_save(:capitalize_name)
-
-  private
-
+private
   define_method(:capitalize_name) do
     self.name=(name().capitalize())
   end

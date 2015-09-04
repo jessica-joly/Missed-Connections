@@ -10,7 +10,6 @@ describe Post do
   end
 
   describe '#url' do
-
     it 'return the URL of a given post' do
       test_post = Post.create({:url => 'url', :keyword_id => nil, :user_id => nil})
       expect(test_post.url()).to(eq('url'))

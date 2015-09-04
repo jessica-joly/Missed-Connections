@@ -123,7 +123,7 @@ end
 
 patch('/users/:id/update') do
   user_id = params.fetch('id').to_i()
-  name = params.fetch('name')
+  name = params.fetch('name_update')
   user = User.find(user_id)
   user.update({:name => name})
   redirect back

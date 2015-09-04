@@ -33,7 +33,7 @@ describe('the user path', :type => :feature) do
     fill_in('password', :with => 'hooray')
     click_button('Submit')
     fill_in('email', :with => 'jessica@gmail.com')
-    click_button('Add/Edit Email')
+    click_button('Update')
     expect(page).to have_content('jessica@gmail.com')
   end
 
@@ -70,10 +70,12 @@ describe('the user path', :type => :feature) do
     visit('/')
     click_link('Get started!')
     fill_in('name', :with => 'Alyssa')
+    fill_in('email', :with => 'jessica@gmail.com')
+    fill_in('password', :with => 'hooray')
     click_button('Submit')
-    fill_in('name', :with => 'starwars')
+    fill_in('name_update', :with => 'starwars')
     click_button('Edit Name')
-    expect(page).to have_content('starwars')
+    expect(page).to have_content('Starwars')
   end
 
   it 'allow user to login using email and password authentification' do
