@@ -17,11 +17,10 @@ post('/login') do
   User.all.each() do |user|
     if user.email == email && user.password == password
       @user = user
-  redirect("/users/#{@user.id()}")
-    else
-  erb(:errors)
+      redirect("/users/#{@user.id()}")
     end
   end
+  erb(:login_error)
 end
 
 get('/users/new') do
