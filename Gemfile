@@ -9,7 +9,6 @@ gem("mechanize")
 gem("pry-byebug")
 gem("nokogiri")
 
-
 group(:test) do
   gem("rspec")
   gem("capybara")
