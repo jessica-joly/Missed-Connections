@@ -5,3 +5,7 @@ development:
 test:
   adapter: postgresql
   database: missed_connections_test
+
+production:
+  adapter: postgresql
+  database: missed_connections_production
